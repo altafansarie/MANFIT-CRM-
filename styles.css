@@ -1,0 +1,349 @@
+/* ==========================================================================
+   MANFIT Haute Couture CRM - Monochromatic Black & White Theme
+   Featuring High-Fashion Editorial Model Background & Advanced Animations
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-bg-primary: #8e690c;
+  --color-bg-secondary: #2f1b1b;
+  --color-card: rgba(244, 97, 6, 0.88);
+  --color-card-border: rgba(255, 255, 255, 0.12);
+  --color-accent: #ffffff;
+  --color-accent-muted: #262216;
+  --color-text-main: #ffffff;
+  --color-text-muted: #1b2639;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color:var(--color-bg-primary);
+  color: var(--color-text-main);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   STYLISH CLOTHING MODEL BACKGROUND (HAUTE COUTURE EDITORIAL)
+   ========================================================================== */
+.fashion-bg-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Primary Fashion Model Overlay - Sharp Tailored Suit Editorial */
+.fashion-bg-model {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 75% 25%, rgba(149, 174, 60, 0.87) 0%, transparent 50%),
+    linear-gradient(to right, #0d0909 25%, rgba(5, 5, 5, 0.9) 55%, rgba(5, 5, 5, 0.75) 80%, rgba(5, 5, 5, 0.92) 100%),
+    linear-gradient(to bottom, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.4) 40%, rgba(5, 5, 5, 0.98) 100%),
+    url('https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=1920&q=85');
+  background-size: cover;
+  background-position: right top;
+  background-repeat: no-repeat;
+  filter: grayscale(100%) contrast(125%) brightness(0.7);
+  opacity: 0.42;
+  animation: modelSubtleBreathe 24s ease-in-out infinite alternate;
+}
+
+/* Secondary Ambient Runway Light Beam */
+.fashion-ambient-light {
+  position: absolute;
+  top: -15%;
+  right: 15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 70%);
+  filter: blur(80px);
+  animation: ambientFloat 14s ease-in-out infinite alternate;
+}
+
+.fashion-ambient-light-2 {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+  filter: blur(90px);
+  animation: ambientFloat 18s ease-in-out infinite alternate-reverse;
+}
+
+/* Ensure main content is always above background */
+header, main, footer, #receiptModal, #addProductModal {
+  position: relative;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & BRAND STYLING
+   ========================================================================== */
+.font-brand {
+  font-family: 'Cinzel', Georgia, serif;
+  letter-spacing: 0.22em;
+}
+
+/* Pure White Radiant Brand Glow */
+.brand-white-glow {
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(25, 23, 23, 0.55), 0 0 50px rgba(255, 255, 255, 0.25);
+}
+
+/* Monochrome Gradient Accent */
+.white-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+/* ==========================================================================
+   GLASSMORPHISM CARDS & HOVER EFFECTS
+   ========================================================================== */
+.glass-card {
+  background: rgba(150, 150, 88, 0.71);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(224, 180, 2, 0.11);
+  box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.85);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(225, 214, 17, 0.786);
+  box-shadow: 0 16px 45px -10px rgba(255, 255, 255, 0.08), 0 0 20px rgba(255, 255, 255, 0.03);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   BUTTONS (BLACK & WHITE HIGH CONTRAST)
+   ========================================================================== */
+.btn-luxury {
+  background: #ffffff;
+  color: #050505;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+  border: 1px solid #ffffff;
+}
+
+.btn-luxury:hover {
+  background: #e2e8f0;
+  color: #d2b11d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.4);
+}
+
+.btn-luxury:active {
+  transform: translateY(0);
+}
+
+.btn-luxury-outline {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.btn-luxury-outline:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #050505;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes modelSubtleBreathe {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.04) translate(-10px, -6px);
+  }
+}
+
+@keyframes ambientFloat {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(25px) translateX(-20px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-15px) translateX(15px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseWhiteGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(255, 255, 255, 0.35);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.35s ease-out forwards;
+}
+
+.animate-white-glow {
+  animation: pulseWhiteGlow 3s infinite;
+}
+
+/* ==========================================================================
+   NAVIGATION TAB STYLES
+   ========================================================================== */
+.nav-tab-active {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid #ffffff !important;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   TABLES & INPUTS (MONOCHROME REFINEMENT)
+   ========================================================================== */
+.table-luxury th {
+  background-color: #0f0f0f;
+  color: #ffffff;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.table-luxury td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  color: #f1f5f9;
+}
+
+.table-luxury tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Input Styling */
+.input-luxury {
+  background-color: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.input-luxury:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25), 0 0 15px rgba(255, 255, 255, 0.1);
+  outline: none;
+  background-color: #121212;
+}
+
+/* ==========================================================================
+   PRINT RECEIPT STYLES
+   ========================================================================== */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .fashion-bg-layer {
+    display: none !important;
+  }
+  #receiptModal, #receiptModal * {
+    visibility: visible;
+  }
+  #receiptModal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .receipt-printable {
+    background: #ffffff !important;
+    color: #111111 !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .receipt-printable * {
+    color: #111111 !important;
+  }
+}

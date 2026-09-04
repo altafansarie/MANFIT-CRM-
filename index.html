@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANFIT - Luxury Apparel & Daily Sales CRM</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            manfit: {
+              black: '#050505',
+              dark: '#0e0e0e',
+              card: '#141414',
+              border: '#262626',
+              accent: '#ffffff',
+              accentLight: '#f8fafc',
+              accentHover: '#e2e8f0',
+              accentDark: '#94a3b8',
+              text: '#ffffff',
+              muted: '#a1a1aa'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Cinzel (Brand) & Outfit (Interface) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-[#050505] text-[#ffffff] min-h-screen flex flex-col selection:bg-white selection:text-black">
+
+  <!-- =========================================================================
+       FASHION CLOTHING MODEL AMBIENT BACKGROUND LAYER
+       ========================================================================= -->
+  <div class="fashion-bg-layer">
+    <div class="fashion-bg-model"></div>
+    <div class="fashion-ambient-light"></div>
+    <div class="fashion-ambient-light-2"></div>
+  </div>
+
+  <!-- =========================================================================
+       LUXURY HEADER WITH LARGE "MANFIT" BRANDING (BLACK & WHITE GLORIFIED)
+       ========================================================================= -->
+  <header class="border-b border-white/10 bg-[#080808]/90 backdrop-blur-xl sticky top-0 z-40 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        
+        <!-- Large Brand Shop Title -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <div>
+              <!-- Large Shop Name MANFIT (Pure Radiant White) -->
+              <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.25em] text-white brand-white-glow leading-tight drop-shadow-lg">
+                MANFIT
+              </h1>
+              <p class="text-[11px] sm:text-xs text-zinc-400 font-medium tracking-[0.22em] uppercase -mt-0.5 flex items-center gap-2">
+                <span class="text-white font-semibold">MANFIT CRM</span>
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-white/70"></span>
+                <span class="text-zinc-400">Daily Sales Register</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Mobile Nav Hamburger -->
+          <button id="mobileMenuBtn" class="md:hidden text-zinc-400 hover:text-white p-2 text-xl">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Top Right Actions & Quick Status -->
+        <div class="flex items-center gap-3 sm:gap-4 self-end md:self-center">
+          <div class="hidden lg:flex flex-col text-right pr-3 border-r border-white/10">
+            <span class="text-xs text-zinc-400 font-medium" id="headerCurrentDate"></span>
+            <span class="text-[11px] text-white font-semibold flex items-center gap-1.5 justify-end">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Store Active
+            </span>
+          </div>
+
+          <!-- Quick "New Sale" Button -->
+          <button data-tab-target="new-sale" class="btn-luxury px-4 sm:px-5 py-2.5 rounded-lg flex items-center gap-2 text-sm font-semibold cursor-pointer">
+            <i class="fa-solid fa-plus-circle"></i>
+            <span>New Sale Entry</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Navigation Tabs Bar -->
+      <nav class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar text-sm font-medium">
+        <button data-tab-target="dashboard" class="px-3.5 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-chart-line text-xs"></i>
+          <span>Dashboard</span>
+        </button>
+        <button data-tab-target="new-sale" class="px-3.5 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-cash-register text-xs"></i>
+          <span>New Sale </span>
+        </button>
+        <button data-tab-target="sales" class="px-3.5 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-receipt text-xs"></i>
+          <span>Sales History</span>
+        </button>
+        <button data-tab-target="customers" class="px-3.5 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-users text-xs"></i>
+          <span>Customers CRM</span>
+        </button>
+        <button data-tab-target="inventory" class="px-3.5 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-shirt text-xs"></i>
+          <span>Garments Catalog</span>
+        </button>
+        <button data-tab-target="settings" class="px-3.5 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap ml-auto">
+          <i class="fa-solid fa-database text-xs"></i>
+          <span>DBMS & Settings</span>
+        </button>
+      </nav>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div id="mobileNav" class="hidden md:hidden pt-3 border-t border-white/10 flex flex-col gap-1">
+        <button data-tab-target="dashboard" class="w-full text-left px-3 py-2 rounded text-zinc-300 hover:bg-white/10">Dashboard</button>
+        <button data-tab-target="new-sale" class="w-full text-left px-3 py-2 rounded text-zinc-300 hover:bg-white/10">New Sale </button>
+        <button data-tab-target="sales" class="w-full text-left px-3 py-2 rounded text-zinc-300 hover:bg-white/10">Sales History</button>
+        <button data-tab-target="customers" class="w-full text-left px-3 py-2 rounded text-zinc-300 hover:bg-white/10">Customers</button>
+        <button data-tab-target="inventory" class="w-full text-left px-3 py-2 rounded text-zinc-300 hover:bg-white/10">Catalog</button>
+        <button data-tab-target="settings" class="w-full text-left px-3 py-2 rounded text-zinc-300 hover:bg-white/10">Settings</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ---------------------------------------------------------------------
+         VIEW 1: DASHBOARD & ANALYTICS OVERVIEW
+         --------------------------------------------------------------------- -->
+    <section id="view-dashboard" class="tab-view space-y-6">
+      <!-- Section Title -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-zinc-100 flex items-center gap-2">
+            <span>Daily Sales & Performance </span>
+          </h2>
+          <p class="text-xs text-zinc-400">Live summary of store revenue, transactions, and inventory performance.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white flex items-center gap-1.5 font-medium">
+            <i class="fa-regular fa-clock text-white"></i>
+            <span id="dashboardLiveClock"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- 5 Metric Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <!-- Today's Revenue -->
+        <div class="glass-card rounded-xl p-4 border border-white/10 hover:border-white/40 transition-all">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs uppercase tracking-wider font-medium">Today's Revenue</span>
+            <div class="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white">
+              <i class="fa-solid fa-indian-rupee-sign text-sm"></i>
+            </div>
+          </div>
+          <div id="stat-today-revenue" class="text-2xl font-bold text-white font-mono">₹0</div>
+          <div class="text-[11px] text-zinc-300 mt-1 flex items-center gap-1">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <span>Daily cash & digital receipts</span>
+          </div>
+        </div>
+
+        <!-- Today's Orders -->
+        <div class="glass-card rounded-xl p-4 border border-white/10 hover:border-white/40 transition-all">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs uppercase tracking-wider font-medium">Orders Today</span>
+            <div class="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white">
+              <i class="fa-solid fa-basket-shopping text-sm"></i>
+            </div>
+          </div>
+          <div id="stat-today-orders" class="text-2xl font-bold text-white font-mono">0</div>
+          <div class="text-[11px] text-zinc-400 mt-1">Billed customers</div>
+        </div>
+
+        <!-- Items Sold -->
+        <div class="glass-card rounded-xl p-4 border border-white/10 hover:border-white/40 transition-all">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs uppercase tracking-wider font-medium">Garments Sold</span>
+            <div class="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white">
+              <i class="fa-solid fa-shirt text-sm"></i>
+            </div>
+          </div>
+          <div id="stat-today-items" class="text-2xl font-bold text-white font-mono">0</div>
+          <div class="text-[11px] text-zinc-400 mt-1">Units today</div>
+        </div>
+
+        <!-- Average Order Value -->
+        <div class="glass-card rounded-xl p-4 border border-white/10 hover:border-white/40 transition-all">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs uppercase tracking-wider font-medium">Average Ticket</span>
+            <div class="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white">
+              <i class="fa-solid fa-tag text-sm"></i>
+            </div>
+          </div>
+          <div id="stat-today-aov" class="text-2xl font-bold text-white font-mono">₹0</div>
+          <div class="text-[11px] text-zinc-400 mt-1">Avg per receipt</div>
+        </div>
+
+        <!-- Total Cumulative Revenue -->
+        <div class="glass-card rounded-xl p-4 border border-white/10 hover:border-white/40 transition-all">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs uppercase tracking-wider font-medium">All-Time Sales</span>
+            <div class="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white">
+              <i class="fa-solid fa-vault text-sm"></i>
+            </div>
+          </div>
+          <div id="stat-total-revenue" class="text-2xl font-bold text-white font-mono">₹0</div>
+          <div class="text-[11px] text-zinc-400 mt-1">Total in database</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- 7-Day Revenue Trend (2 Cols) -->
+        <div class="lg:col-span-2 glass-card rounded-xl p-5 border border-white/10">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-chart-area text-white"></i>
+                <span>7-Day Sales Revenue Trend</span>
+              </h3>
+              <p class="text-xs text-zinc-400">Daily billing comparison</p>
+            </div>
+          </div>
+          <div class="h-64 sm:h-72 w-full">
+            <canvas id="chartRevenueTrend"></canvas>
+          </div>
+        </div>
+
+        <!-- Sales by Category (1 Col) -->
+        <div class="glass-card rounded-xl p-5 border border-white/10 flex flex-col justify-between">
+          <div class="mb-3">
+            <h3 class="font-semibold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-pie text-white"></i>
+              <span>Sales by Category</span>
+            </h3>
+            <p class="text-xs text-zinc-400">Suits, Shirts, Trousers & Ethnic</p>
+          </div>
+          <div class="h-56 w-full flex items-center justify-center">
+            <canvas id="chartCategoryShare"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: Payment Methods & Recent Sales -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Payment Methods Bar -->
+        <div class="glass-card rounded-xl p-5 border border-white/10">
+          <div class="mb-4">
+            <h3 class="font-semibold text-white flex items-center gap-2">
+              <i class="fa-solid fa-credit-card text-white"></i>
+              <span>Payment Modes</span>
+            </h3>
+            <p class="text-xs text-zinc-400">Cash vs UPI QR vs Card</p>
+          </div>
+          <div class="h-56 w-full">
+            <canvas id="chartPaymentMethods"></canvas>
+          </div>
+        </div>
+
+        <!-- Recent Sales Stream (2 Cols) -->
+        <div class="lg:col-span-2 glass-card rounded-xl p-5 border border-white/10">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-clock-rotate-left text-white"></i>
+                <span>Recent Daily Transactions</span>
+              </h3>
+              <p class="text-xs text-zinc-400">Latest orders recorded at MANFIT</p>
+            </div>
+            <button data-tab-target="sales" class="text-xs text-white hover:text-zinc-300 transition-colors flex items-center gap-1 font-semibold">
+              <span>View All History</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+
+          <div id="recentSalesList" class="space-y-2.5">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------------
+         ********************************************************************************VIEW 2: NEW SALE ENTRY (POS)  ********************************************************************************************************
+         --------------------------------------------------------------------- -->
+    <section id="view-new-sale" class="tab-view hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-zinc-100 flex items-center gap-2">
+            <span>New Sale Recording </span>
+          </h2>
+          <p class="text-xs text-zinc-400">Create an  bill .</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-xs px-3 py-1.5 rounded-lg bg-[#111111] border border-white/15 text-zinc-300 font-mono">
+            <span>Next Invoice: </span>
+            <span id="saleInvoicePreview" class="text-white font-bold">MF-2026-001</span>
+          </div>
+          <button id="resetSaleBtn" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-zinc-300 hover:text-white border border-white/15 transition-colors">
+            <i class="fa-solid fa-arrows-rotate mr-1"></i> Clear Form
+          </button>
+        </div>
+      </div>
+
+      <form id="newSaleForm" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Column: Customer Details & Garments Line Items (8 Cols) -->
+        <div class="lg:col-span-8 space-y-5">
+
+          <!-- Customer Info Card -->
+          <div class="glass-card rounded-xl p-5 border border-white/10">
+            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-user-tag"></i>
+              <span>Customer & Transaction Details</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <!-- Customer Phone (Lookup) -->
+              <div>
+                <label class="block text-xs text-zinc-400 mb-1 font-medium">Customer Mobile Number</label>
+                <div class="relative">
+                  <span class="absolute left-3 top-2.5 text-zinc-500 text-xs"><i class="fa-solid fa-phone"></i></span>
+                  <input type="tel" id="custPhoneInput" class="input-luxury w-full rounded-lg pl-8 pr-3 py-2 text-sm" placeholder="+91 000000000 ">
+                </div>
+              </div>
+
+              <!-- Customer Name -->
+              <div>
+                <label class="block text-xs text-zinc-400 mb-1 font-medium">Customer Full Name</label>
+                <div class="relative">
+                  <span class="absolute left-3 top-2.5 text-zinc-500 text-xs"><i class="fa-solid fa-user"></i></span>
+                  <input type="text" id="custNameInput" class="input-luxury w-full rounded-lg pl-8 pr-3 py-2 text-sm" placeholder="e.g. Altaf Ansari">
+                </div>
+              </div>
+
+              <!-- Sale Date & Time -->
+              <div>
+                <label class="block text-xs text-zinc-400 mb-1 font-medium">Date & Time</label>
+                <div class="relative">
+                  <input type="datetime-local" id="saleDateInput" class="input-luxury w-full rounded-lg px-3 py-2 text-sm">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Items Table Card -->
+          <div class="glass-card rounded-xl p-5 border border-white/10">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-shirt"></i>
+                <span>Garments / Stuffs</span>
+              </h3>
+              <button type="button" id="addItemRowBtn" class="btn-luxury-outline px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span>Add Garment</span>
+              </button>
+            </div>
+
+            <!-- Items Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm">
+                <thead>
+                  <tr class="border-b border-white/10 text-xs text-white uppercase tracking-wider">
+                    <th class="pb-2.5 font-semibold">Outfit Type</th>
+                    <th class="pb-2.5 font-semibold">Category</th>
+                    <th class="pb-2.5 font-semibold">Size</th>
+                    <th class="pb-2.5 font-semibold text-center">Qty</th>
+                    <th class="pb-2.5 font-semibold text-right">Price (₹)</th>
+                    <th class="pb-2.5 font-semibold text-right">Total</th>
+                    <th class="pb-2.5 text-center"></th>
+                  </tr>
+                </thead>
+                <tbody id="saleItemsTableBody">
+                  <!-- Dynamic rows generated by app.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pre-populated datalist for auto-complete from catalog -->
+            <datalist id="catalogProductsList"></datalist>
+          </div>
+
+          <!-- Alterations & Tailoring Notes (Cloth Shop Specific) -->
+          <div class="glass-card rounded-xl p-5 border border-white/10">
+            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-scissors"></i>
+              <span>Alteration & Fitting Instructions (Optional)</span>
+            </h3>
+            <textarea id="alterationNotesInput" rows="2" class="input-luxury w-full rounded-lg px-3 py-2 text-sm" 
+              placeholder="e.g. fitting, cutting, length cutting, but tuesday - not available"></textarea>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Billing Summary & Payment (4 Cols) -->
+        <div class="lg:col-span-4 space-y-5">
+          
+          <div class="glass-card rounded-xl p-5 border border-white/10 sticky top-24">
+            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-2 border-b border-white/10 pb-2.5">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+              <span>Payment & Checkout</span>
+            </h3>
+
+            <!-- Payment Method Pills -->
+            <div class="mb-4">
+              <label class="block text-xs text-zinc-400 mb-2 font-medium">Payment Mode</label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="flex flex-col items-center justify-center p-2.5 rounded-lg border border-white/15 bg-[#0d0d0d] hover:border-white cursor-pointer has-[:checked]:border-white has-[:checked]:bg-white/15 transition-all">
+                  <input type="radio" name="paymentMethod" value="Cash" checked class="hidden">
+                  <i class="fa-solid fa-money-bill-wave text-white mb-1"></i>
+                  <span class="text-xs text-zinc-200">Cash</span>
+                </label>
+
+                <label class="flex flex-col items-center justify-center p-2.5 rounded-lg border border-white/15 bg-[#0d0d0d] hover:border-white cursor-pointer has-[:checked]:border-white has-[:checked]:bg-white/15 transition-all">
+                  <input type="radio" name="paymentMethod" value="UPI" class="hidden">
+                  <i class="fa-solid fa-qrcode text-white mb-1"></i>
+                  <span class="text-xs text-zinc-200">UPI / QR</span>
+                </label>
+
+                <label class="flex flex-col items-center justify-center p-2.5 rounded-lg border border-white/15 bg-[#0d0d0d] hover:border-white cursor-pointer has-[:checked]:border-white has-[:checked]:bg-white/15 transition-all">
+                  <input type="radio" name="paymentMethod" value="Card" class="hidden">
+                  <i class="fa-solid fa-credit-card text-white mb-1"></i>
+                  <span class="text-xs text-zinc-200">Card</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Payment Status -->
+            <div class="mb-4">
+              <label class="block text-xs text-zinc-400 mb-2 font-medium">Payment Status</label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="flex items-center gap-2 p-2 rounded-lg border border-white/15 bg-[#0d0d0d] cursor-pointer has-[:checked]:border-white has-[:checked]:bg-white/15 text-xs">
+                  <input type="radio" name="paymentStatus" value="Paid" checked class="text-white focus:ring-0">
+                  <span class="text-zinc-200">Fully Paid</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-lg border border-white/15 bg-[#0d0d0d] cursor-pointer has-[:checked]:border-white has-[:checked]:bg-white/15 text-xs">
+                  <input type="radio" name="paymentStatus" value="Partial / Credit" class="text-zinc-300 focus:ring-0">
+                  <span class="text-zinc-200">Partial / Credit</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Financials Breakdown -->
+            <div class="space-y-2.5 pt-3 border-t border-white/10 text-sm">
+              <div class="flex justify-between text-zinc-400">
+                <span>Subtotal</span>
+                <span id="summarySubtotal" class="font-mono text-zinc-200">₹0</span>
+              </div>
+
+              <!-- Discount Input -->
+              <div class="flex items-center justify-between gap-3 text-zinc-400">
+                <span class="text-xs">Discount (Flat ₹)</span>
+                <input type="number" min="0" id="saleDiscountInput" value="0" 
+                  class="input-luxury w-24 rounded px-2 py-1 text-xs text-right font-mono">
+              </div>
+
+              <!-- Tax / GST % -->
+              <div class="flex items-center justify-between gap-3 text-zinc-400">
+                <span class="text-xs">Tax / GST (%)</span>
+                <select id="saleTaxInput" class="input-luxury rounded px-2 py-1 text-xs">
+                  <option value="0">0% (Exempt)</option>
+                  <option value="5">5% (Apparel standard)</option>
+                  <option value="12">12% (Luxury garments)</option>
+                </select>
+              </div>
+
+              <div class="flex justify-between text-xs text-white">
+                <span>Discount Applied:</span>
+                <span id="summaryDiscount" class="font-mono font-medium">- ₹0</span>
+              </div>
+
+              <div class="flex justify-between text-xs text-zinc-400">
+                <span>Tax Amount:</span>
+                <span id="summaryTax" class="font-mono">+ ₹0</span>
+              </div>
+
+              <!-- Grand Total -->
+              <div class="pt-3 border-t border-white/15 flex justify-between items-baseline">
+                <div>
+                  <span class="text-base font-bold text-white">Grand Total</span>
+                  <div class="text-[10px] text-zinc-400">Inclusive of all charges</div>
+                </div>
+                <div id="summaryGrandTotal" class="text-2xl font-black font-mono text-white brand-white-glow">
+                  ₹0
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full mt-6 btn-luxury py-3 rounded-xl flex items-center justify-center gap-2 font-bold text-base cursor-pointer shadow-2xl">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Save & Generate Invoice</span>
+            </button>
+          </div>
+
+        </div>
+
+      </form>
+    </section>
+
+    <!-- ---------------------------------------------------------------------
+         VIEW 3: SALES HISTORY & DAILY REGISTER
+         --------------------------------------------------------------------- -->
+    <section id="view-sales" class="tab-view hidden space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-zinc-100 flex items-center gap-2">
+            <span>Sales History & Daily Register</span>
+          </h2>
+          <p class="text-xs text-zinc-400">Track and filter past orders, print receipts, and export daily accounts.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="exportSalesCsvBtn" class="btn-luxury-outline px-3.5 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-file-excel"></i>
+            <span>Export to CSV</span>
+          </button>
+          <button id="printDailyReportBtn" class="btn-luxury px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-print"></i>
+            <span>Print Report</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters Bar -->
+      <div class="glass-card rounded-xl p-4 border border-white/10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 flex-1">
+          <!-- Date Filter -->
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1 font-semibold">Date Range</label>
+            <select id="filterDateRange" class="input-luxury w-full rounded-lg px-2.5 py-1.5 text-xs text-zinc-200">
+              <option value="today">Today's Sales</option>
+              <option value="yesterday">Yesterday</option>
+              <option value="week">Past 7 Days</option>
+              <option value="month">This Month</option>
+              <option value="all">All Time Records</option>
+            </select>
+          </div>
+
+          <!-- Payment Method Filter -->
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1 font-semibold">Payment Mode</label>
+            <select id="filterPaymentMethod" class="input-luxury w-full rounded-lg px-2.5 py-1.5 text-xs text-zinc-200">
+              <option value="all">All Modes</option>
+              <option value="Cash">Cash</option>
+              <option value="UPI">UPI / QR</option>
+              <option value="Card">Card</option>
+            </select>
+          </div>
+
+          <!-- Status Filter -->
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1 font-semibold">Status</label>
+            <select id="filterPaymentStatus" class="input-luxury w-full rounded-lg px-2.5 py-1.5 text-xs text-zinc-200">
+              <option value="all">All Statuses</option>
+              <option value="Paid">Fully Paid</option>
+              <option value="Partial / Credit">Partial / Credit</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div class="md:w-64">
+          <label class="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1 font-semibold">Search Bills</label>
+          <div class="relative">
+            <span class="absolute left-2.5 top-2 text-zinc-500 text-xs"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" id="searchSalesInput" class="input-luxury w-full rounded-lg pl-8 pr-3 py-1.5 text-xs" placeholder="Invoice #, customer or garment...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Stats Summary Banner -->
+      <div class="flex items-center justify-between px-4 py-2.5 rounded-lg bg-[#111111]/80 border border-white/10 text-xs">
+        <span class="text-zinc-400" id="salesFilteredCount">Loading sales...</span>
+        <div class="flex items-center gap-2">
+          <span class="text-zinc-400">Total Filtered Value:</span>
+          <span id="salesFilteredTotal" class="font-bold text-white font-mono text-sm">₹0</span>
+        </div>
+      </div>
+
+      <!-- Sales Table -->
+      <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left table-luxury">
+            <thead>
+              <tr>
+                <th class="p-3.5">Invoice #</th>
+                <th class="p-3.5">Date & Time</th>
+                <th class="p-3.5">Customer</th>
+                <th class="p-3.5">Outfit Type & Size</th>
+                <th class="p-3.5">Payment</th>
+                <th class="p-3.5 text-right">Total Amount</th>
+                <th class="p-3.5 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="salesHistoryTableBody">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------------
+         VIEW 4: CUSTOMERS CRM DIRECTORY
+         --------------------------------------------------------------------- -->
+    <section id="view-customers" class="tab-view hidden space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            <span>Customer Relationship Directory</span>
+          </h2>
+          <p class="text-xs text-zinc-400">Store and analyze customer purchase habits, lifetime values (LTV), and contact numbers.</p>
+        </div>
+        <div class="text-xs px-3 py-1.5 rounded-lg bg-[#111111]/80 border border-white/15 text-white font-mono" id="customerTotalCount">
+          0 clients
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left table-luxury">
+            <thead>
+              <tr>
+                <th class="p-3.5">Client Name & Email</th>
+                <th class="p-3.5">Phone Number</th>
+                <th class="p-3.5 text-center">Order Count</th>
+                <th class="p-3.5 text-right">Lifetime Value (LTV)</th>
+                <th class="p-3.5">Last Visit</th>
+                <th class="p-3.5 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="customersTableBody">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------------
+         VIEW 5: GARMENTS CATALOG & INVENTORY
+         --------------------------------------------------------------------- -->
+    <section id="view-inventory" class="tab-view hidden space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            <span>MANFIT Garments & Products Catalog</span>
+          </h2>
+          <p class="text-xs text-zinc-400">Jeans, shirts, and outfits catalog for quick billing auto-complete.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs px-3 py-1.5 rounded-lg bg-[#111111]/80 border border-white/15 text-zinc-300 font-mono" id="inventoryTotalCount">
+            0 garments
+          </span>
+          <button id="openAddProductModalBtn" class="btn-luxury px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Garment</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filter & Management Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-[#111111]/80 border border-white/10">
+        <div class="flex flex-wrap items-center gap-1.5" id="inventoryCategoryPills">
+          <!-- Dynamic category filter pills rendered via app.js -->
+        </div>
+        <div id="categoryActionButtons" class="hidden items-center gap-2 shrink-0">
+          <button id="deleteCategoryBtn" type="button" class="text-xs px-2.5 py-1.5 rounded-lg border border-rose-900/60 bg-rose-950/40 text-rose-300 hover:bg-rose-900/50 hover:text-rose-200 transition-all flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-trash-can text-[11px]"></i>
+            <span id="deleteCategoryBtnText">Delete Category</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left table-luxury">
+            <thead>
+              <tr>
+                <th class="p-3.5">SKU / Code</th>
+                <th class="p-3.5">Garment Name</th>
+                <th class="p-3.5">Category</th>
+                <th class="p-3.5">Available Sizes</th>
+                <th class="p-3.5 text-right">Price (₹)</th>
+                <th class="p-3.5 text-center">Stock Level</th>
+                <th class="p-3.5 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------------
+         VIEW 6: DBMS & SETTINGS
+         --------------------------------------------------------------------- -->
+    <section id="view-settings" class="tab-view hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            <span>Database Management & System Architecture</span>
+          </h2>
+          <p class="text-xs text-zinc-400">Select your active database engine, backup CRM records, or connect to the Node.js REST server.</p>
+        </div>
+        <div id="apiStatusBadge">
+          <!-- Active status badge -->
+        </div>
+      </div>
+
+      <!-- Engine Selector Card -->
+      <div class="glass-card rounded-xl p-6 border border-white/10 space-y-6">
+        <h3 class="text-base font-semibold text-white flex items-center gap-2">
+          <i class="fa-solid fa-server"></i>
+          <span>Database Engine Selector</span>
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Option 1: IndexedDB (Client DBMS) -->
+          <label class="relative p-5 rounded-xl border border-white/10 bg-[#111111]/80 hover:border-white/40 cursor-pointer transition-all has-[:checked]:border-white has-[:checked]:bg-white/10">
+            <div class="flex items-start gap-3">
+              <input type="radio" name="dbModeRadio" value="indexeddb" class="mt-1 text-white focus:ring-0">
+              <div>
+                <div class="font-bold text-white flex items-center gap-2">
+                  <span>Browser IndexedDB (Default)</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Zero Setup</span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">
+                  High-performance local DBMS built right into your browser. Persistent, fully transactional, requires zero servers or installs. Simply open and use!
+                </p>
+              </div>
+            </div>
+          </label>
+
+          <!-- Option 2: Node.js + SQLite REST Server -->
+          <label class="relative p-5 rounded-xl border border-white/10 bg-[#111111]/80 hover:border-white/40 cursor-pointer transition-all has-[:checked]:border-white has-[:checked]:bg-white/10">
+            <div class="flex items-start gap-3">
+              <input type="radio" name="dbModeRadio" value="rest" class="mt-1 text-white focus:ring-0">
+              <div>
+                <div class="font-bold text-white flex items-center gap-2">
+                  <span>Node.js & SQLite REST API Server</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-white/10 text-white border border-white/25 font-mono">Multi-Device</span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">
+                  Connect to the included Express.js + SQLite backend server for centralized multi-computer counter operation in the store.
+                </p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- REST API Configuration Section -->
+        <div id="restServerSettingsSection" class="p-4 rounded-lg bg-[#0e0e0e] border border-white/10 space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <label class="text-xs font-semibold text-white">REST API Endpoint URL</label>
+            <span class="text-[11px] text-zinc-500 font-mono">Run `node backend/server.js` to launch local server</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <input type="url" id="restApiUrlInput" class="input-luxury flex-1 rounded-lg px-3 py-2 text-xs font-mono" value="http://localhost:5000/api">
+            <button type="button" id="saveApiUrlBtn" class="btn-luxury px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer">
+              Save & Connect
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backup & Demo Data Utilities -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Backup & Restore -->
+        <div class="glass-card rounded-xl p-5 border border-white/10 space-y-4">
+          <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <span>Database Backup & Restore (JSON)</span>
+          </h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Safely download your complete sales log, customer database, and inventory as an offline JSON backup or restore from a previous file.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <button id="backupDbBtn" class="btn-luxury-outline px-3.5 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5 cursor-pointer">
+              <i class="fa-solid fa-download"></i>
+              <span>Download JSON Backup</span>
+            </button>
+            <label class="btn-luxury-outline px-3.5 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5 cursor-pointer">
+              <i class="fa-solid fa-upload"></i>
+              <span>Restore JSON Backup</span>
+              <input type="file" id="restoreDbFileInput" accept=".json" class="hidden">
+            </label>
+          </div>
+        </div>
+
+        <!-- Reset / Clean Slate Utility -->
+        <div class="glass-card rounded-xl p-5 border border-white/10 space-y-4">
+          <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+            <i class="fa-solid fa-broom"></i>
+            <span>Reset Sales Register (Start from Beginning)</span>
+          </h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Permanently erase all transaction records, invoice history, and customer stats to start your shop's sales register completely fresh from Invoice #1 (<span class="font-mono text-white">MF-2026-001</span>).
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <button id="eraseAllSalesBtn" class="px-4 py-2 rounded-lg text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-white flex items-center gap-1.5 cursor-pointer shadow-lg shadow-rose-950/40 transition-all">
+              <i class="fa-solid fa-trash-can"></i>
+              <span>Erase All Sales & Start from Beginning</span>
+            </button>
+            <button id="seedSampleDataBtn" class="btn-luxury-outline px-3.5 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5 cursor-pointer">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>Load Demo Data</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       LUXURY PRINTABLE INVOICE / RECEIPT MODAL
+       ========================================================================= -->
+  <div id="receiptModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="receipt-printable bg-[#111111] border border-white/20 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-auto animate-fade-in">
+      
+      <!-- Top Actions Bar (No Print) -->
+      <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-5 no-print">
+        <span class="text-xs font-semibold text-white uppercase tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-receipt"></i>
+          <span>MANFIT Official Invoice</span>
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="btn-luxury px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-print"></i>
+            <span>Print / Save PDF</span>
+          </button>
+          <button onclick="closeReceiptModal()" class="text-zinc-400 hover:text-white p-1.5 text-sm cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Receipt Content -->
+      <div class="text-center space-y-1 mb-6">
+        <h2 class="font-brand text-3xl font-black tracking-[0.25em] text-white brand-white-glow">
+          MANFIT.store
+        </h2>
+        <p class="text-[11px] tracking-[0.18em] text-white uppercase font-medium">menswear</p>
+        <p class="text-[11px] text-zinc-400">trandy outfits,Fashion cloths. </p>
+        <p class="text-[10px] text-zinc-500 font-mono">Tel: +9508062100 • GSTIN: 27AABCM8821Q1ZN</p>
+      </div>
+
+      <!-- Receipt Meta -->
+      <div class="grid grid-cols-2 text-xs py-3 border-y border-white/10 mb-4 gap-2">
+        <div>
+          <div class="text-zinc-400">Invoice No: <span id="receiptInvoiceNo" class="font-mono text-white font-bold"></span></div>
+          <div class="text-zinc-400">Date: <span id="receiptDate" class="text-zinc-200"></span></div>
+        </div>
+        <div class="text-right">
+          <div class="text-zinc-400">Client: <span id="receiptCustomerName" class="font-medium text-zinc-200"></span></div>
+          <div class="text-zinc-400">Phone: <span id="receiptCustomerPhone" class="text-zinc-200"></span></div>
+        </div>
+      </div>
+
+      <!-- Items Table -->
+      <table class="w-full text-xs text-left mb-4">
+        <thead>
+          <tr class="border-b border-white/10 text-zinc-400 font-semibold">
+            <th class="py-2">Outfit Type</th>
+            <th class="py-2 text-center">Qty</th>
+            <th class="py-2 text-right">Price</th>
+            <th class="py-2 text-right">Total</th>
+          </tr>
+        </thead>
+        <tbody id="receiptItemsBody">
+          <!-- Populated dynamically -->
+        </tbody>
+      </table>
+
+      <!-- Financial Totals -->
+      <div class="space-y-1.5 text-xs border-t border-white/10 pt-3 text-zinc-300">
+        <div class="flex justify-between">
+          <span class="text-zinc-400">Subtotal</span>
+          <span id="receiptSubtotal" class="font-mono">₹0</span>
+        </div>
+        <div class="flex justify-between text-zinc-200">
+          <span>Discount</span>
+          <span id="receiptDiscount" class="font-mono">₹0</span>
+        </div>
+        <div class="flex justify-between text-zinc-400">
+          <span>Tax / GST</span>
+          <span id="receiptTax" class="font-mono">₹0</span>
+        </div>
+        <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-white/20">
+          <span>Net Total</span>
+          <span id="receiptGrandTotal" class="text-white brand-white-glow font-mono text-lg">₹0</span>
+        </div>
+        <div class="flex justify-between text-[11px] text-zinc-300 pt-1">
+          <span>Payment Mode</span>
+          <span id="receiptPaymentMethod" class="font-medium text-white"></span>
+        </div>
+      </div>
+
+      <!-- Alteration & Tailoring Instructions Box -->
+      <div id="receiptAlterationsBox" class="mt-4 p-3 rounded-lg bg-[#0d0d0d] border border-white/15 text-xs">
+        <div class="text-white font-semibold mb-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-scissors"></i>
+          <span>Tailoring Instructions</span>
+        </div>
+        <p id="receiptAlterationNotes" class="text-zinc-300 italic text-[11px] leading-relaxed"></p>
+      </div>
+
+      <!-- Footer Policy -->
+      <div class="text-center mt-6 pt-4 border-t border-white/10 space-y-1">
+        <p class="text-xs font-semibold text-white tracking-wider uppercase font-brand">Thank you for shopping at MANFIT </p>
+        <p class="text-[10px] text-zinc-500">Exchanges accepted within 7 days with original bill and brand tags.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       ADD GARMENT MODAL
+       ========================================================================= -->
+  <div id="addProductModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card rounded-2xl max-w-md w-full p-6 border border-white/15 shadow-2xl relative animate-fade-in">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-shirt"></i>
+          <span>Add New Garment to Catalog</span>
+        </h3>
+        <button id="closeAddProductModalBtn" class="text-zinc-400 hover:text-zinc-100 p-1 text-sm">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="addProductForm" class="space-y-3.5">
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1">Garment Name</label>
+          <input type="text" id="newProdName" class="input-luxury w-full rounded-lg px-3 py-2 text-xs" placeholder="e.g. xyx jeans " required>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-zinc-400 mb-1">Category</label>
+            <select id="newProdCategory" class="input-luxury w-full rounded-lg px-2.5 py-2 text-xs">
+              <option value="Jeans/Pants">Jeans/Pants</option>
+              <option value="T-shirts">T-shirts</option>
+              <option value="Formal Shirts">Formal Shirts</option>
+              <option value="Casual Shirts">Casual Shirts</option>
+              <option value="Trousers">Trousers</option>
+              <option value="Undergarments">Undergarments</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-zinc-400 mb-1">SKU / Code</label>
+            <input type="text" id="newProdSku" class="input-luxury w-full rounded-lg px-3 py-2 text-xs" placeholder="MF-BLZ-99">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-zinc-400 mb-1">Retail Price (₹)</label>
+            <input type="number" min="0" id="newProdPrice" class="input-luxury w-full rounded-lg px-3 py-2 text-xs" placeholder="4500" required>
+          </div>
+          <div>
+            <label class="block text-xs text-zinc-400 mb-1">Initial Stock</label>
+            <input type="number" min="0" id="newProdStock" class="input-luxury w-full rounded-lg px-3 py-2 text-xs" placeholder="20" required>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1">Available Sizes (comma separated)</label>
+          <input type="text" id="newProdSizes" class="input-luxury w-full rounded-lg px-3 py-2 text-xs" placeholder="28, 30, 32, 34 or S, M, L">
+        </div>
+
+        <div class="pt-3">
+          <button type="submit" class="w-full btn-luxury py-2.5 rounded-lg text-xs font-bold cursor-pointer">
+            Save Garment
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       DELETE GARMENT CONFIRMATION MODAL (POP-UP)
+       ========================================================================= -->
+  <div id="deleteGarmentModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card rounded-2xl max-w-md w-full p-6 border border-white/15 shadow-2xl relative animate-fade-in space-y-4">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-rose-950/50 border border-rose-800/40 flex items-center justify-center text-rose-400 shrink-0">
+          <i class="fa-solid fa-trash-can text-xl"></i>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <span>Delete Garment from Catalog?</span>
+          </h3>
+          <p class="text-xs text-zinc-400 mt-1">
+            This garment will be permanently removed from your catalog and billing quick-lookup. Past sales records will be preserved.
+          </p>
+        </div>
+      </div>
+
+      <!-- Garment Preview Box -->
+      <div class="p-3.5 rounded-xl bg-[#0e0e0e] border border-white/10 space-y-2 text-xs">
+        <div class="flex justify-between items-center border-b border-white/10 pb-2">
+          <span class="text-zinc-400">Garment Name:</span>
+          <span id="delGarmentName" class="font-semibold text-white"></span>
+        </div>
+        <div class="flex justify-between items-center border-b border-white/10 pb-2">
+          <span class="text-zinc-400">Category:</span>
+          <span id="delGarmentCategory" class="px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 font-mono text-[11px]"></span>
+        </div>
+        <div class="flex justify-between items-center border-b border-white/10 pb-2">
+          <span class="text-zinc-400">SKU / Code:</span>
+          <span id="delGarmentSku" class="font-mono text-white font-semibold"></span>
+        </div>
+        <div class="flex justify-between items-center pt-0.5">
+          <span class="text-zinc-400">Retail Price:</span>
+          <span id="delGarmentPrice" class="font-bold text-white"></span>
+        </div>
+      </div>
+
+      <input type="hidden" id="delGarmentId" value="">
+
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button type="button" id="cancelDeleteGarmentBtn" class="btn-luxury-outline px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer">
+          Cancel
+        </button>
+        <button type="button" id="confirmDeleteGarmentBtn" class="px-4 py-2 rounded-lg text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-white flex items-center gap-1.5 cursor-pointer shadow-lg shadow-rose-900/30 transition-all">
+          <i class="fa-solid fa-trash-can text-xs"></i>
+          <span>Confirm Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       DELETE CATEGORY CONFIRMATION MODAL (POP-UP)
+       ========================================================================= -->
+  <div id="deleteCategoryModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card rounded-2xl max-w-md w-full p-6 border border-white/15 shadow-2xl relative animate-fade-in space-y-4">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-amber-950/50 border border-amber-800/40 flex items-center justify-center text-amber-400 shrink-0">
+          <i class="fa-solid fa-folder-minus text-xl"></i>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <span>Delete Category?</span>
+          </h3>
+          <p class="text-xs text-zinc-400 mt-1">
+            Are you sure you want to delete the category <span id="delCategoryNameLabel" class="font-semibold text-white"></span>?
+          </p>
+        </div>
+      </div>
+
+      <div class="p-3.5 rounded-xl bg-[#0e0e0e] border border-white/10 text-xs text-zinc-300 space-y-2">
+        <p id="delCategoryCountMessage" class="text-xs text-zinc-400"></p>
+        <p class="text-[11px] text-zinc-500">Note: All garments under this category will be permanently removed from the catalog.</p>
+      </div>
+
+      <input type="hidden" id="delCategoryName" value="">
+
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button type="button" id="cancelDeleteCategoryBtn" class="btn-luxury-outline px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer">
+          Cancel
+        </button>
+        <button type="button" id="confirmDeleteCategoryBtn" class="px-4 py-2 rounded-lg text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-white flex items-center gap-1.5 cursor-pointer shadow-lg shadow-rose-900/30 transition-all">
+          <i class="fa-solid fa-trash-can text-xs"></i>
+          <span>Delete Category & Items</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FOOTER (MONOCHROME GLORIFIED)
+       ========================================================================= -->
+  <footer class="border-t border-white/10 bg-[#060606]/95 backdrop-blur-md py-4 text-xs text-zinc-400 mt-12">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="font-brand font-bold text-white tracking-widest text-sm brand-white-glow">MANFIT</span>
+        <span>• owned by RAGIB ALAM</span>
+      </div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <span>insta :@manfit.store</span>
+        <span>•</span>
+        <span>Mob:9508062100</span>
+        <span>•</span>
+        <span>site by altaf ansari </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/db.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Live Clock updater
+    function updateLiveClock() {
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+      const timeStr = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+      
+      const headDate = document.getElementById('headerCurrentDate');
+      const liveClock = document.getElementById('dashboardLiveClock');
+      if (headDate) headDate.innerText = `${dateStr} • ${timeStr}`;
+      if (liveClock) liveClock.innerText = timeStr;
+    }
+    setInterval(updateLiveClock, 1000);
+    updateLiveClock();
+  </script>
+</body>
+</html>

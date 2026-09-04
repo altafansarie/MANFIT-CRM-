@@ -1,0 +1,17 @@
+{
+  "name": "manfit-crm-backend",
+  "version": "1.0.0",
+  "description": "REST API and DBMS backend for MANFIT Cloth Shop Daily Sales CRM",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["crm", "cloth-shop", "sales", "inventory", "manfit"],
+  "author": "MANFIT Apparel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}
