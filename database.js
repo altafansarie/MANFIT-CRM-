@@ -111,12 +111,14 @@ class ManfitDatabase {
     `);
 
     const products = [
-      ['prod_1', 'Italian Slim Fit Charcoal Suit', 'Suits', 'MF-SUIT-01', 14500, 18, JSON.stringify(['38', '40', '42', '44'])],
-      ['prod_2', 'Royal Navy Blazer (Brass Buttons)', 'Blazers', 'MF-BLZ-02', 8900, 24, JSON.stringify(['38', '40', '42'])],
-      ['prod_3', 'Egyptian Giza Cotton Formal Shirt', 'Formal Shirts', 'MF-SHT-03', 2800, 45, JSON.stringify(['39', '40', '42', '44'])],
-      ['prod_4', 'Classic Khaki Chino Trousers', 'Trousers', 'MF-TRS-04', 2400, 32, JSON.stringify(['30', '32', '34', '36'])],
-      ['prod_5', 'Raw Silk Festive Kurta & Jacket', 'Ethnic Wear', 'MF-ETH-05', 9500, 12, JSON.stringify(['M', 'L', 'XL'])],
-      ['prod_6', 'Handcrafted Italian Leather Belt', 'Accessories', 'MF-ACC-07', 1800, 50, JSON.stringify(['Free Size'])]
+  { id: 'prod_1', name: 'GRAX JEANS', category: 'jeans', sku: 'MF-01', price: 1200, stock: 18, sizes: ['28', '30', '32', '34'] },
+  { id: 'prod_2', name: 'RFD SHIRT DENIM', category: 'casual shirt', sku: 'MF-02', price: 1200, stock: 24, sizes: ['38', '40', '42'] },
+  { id: 'prod_3', name: 'Formal Shirt', category: 'Formal Shirts', sku: 'MF-03', price: 1150, stock: 45, sizes: ['38', '40', '42', '44'] },
+  { id: 'prod_4', name: ' Trousers', category: 'Trousers', sku: 'MF-TRS-04', price: 1200, stock: 32, sizes: ['30', '32', '34', '36'] },
+  { id: 'prod_5', name: 'Jacket', category: 'jacket', sku: 'MF-05', price: 3500, stock: 12, sizes: ['M', 'L', 'XL'] },
+  { id: 'prod_6', name: 'Formal pant', category: 'Formal pant', sku: 'MF-06', price: 1200, stock: 38, sizes: ['28', '30', '32', '34'] },
+  { id: 'prod_7', name: ' Perfume', category: 'Accessories', sku: 'MF-PFM-07', price: 1500, stock: 50, sizes: ['N/A'] },
+  { id: 'prod_8', name: 'Under garments', category: 'undergarments', sku: 'MF-UW-08', price: 500, stock: 40, sizes: ['Standard'] }
     ];
 
     for (const p of products) {
@@ -127,10 +129,14 @@ class ManfitDatabase {
   seedInitialData() {
     this.inMemoryData = {
       products: [
-        { id: 'prod_1', name: 'Italian Slim Fit Charcoal Suit', category: 'Suits', sku: 'MF-SUIT-01', price: 14500, stock: 18, sizes: ['38', '40', '42', '44'] },
-        { id: 'prod_2', name: 'Royal Navy Blazer (Brass Buttons)', category: 'Blazers', sku: 'MF-BLZ-02', price: 8900, stock: 24, sizes: ['38', '40', '42'] },
-        { id: 'prod_3', name: 'Egyptian Giza Cotton Formal Shirt', category: 'Formal Shirts', sku: 'MF-SHT-03', price: 2800, stock: 45, sizes: ['39', '40', '42', '44'] },
-        { id: 'prod_4', name: 'Classic Khaki Chino Trousers', category: 'Trousers', sku: 'MF-TRS-04', price: 2400, stock: 32, sizes: ['30', '32', '34', '36'] }
+  { id: 'prod_1', name: 'GRAX JEANS', category: 'jeans', sku: 'MF-01', price: 1200, stock: 18, sizes: ['28', '30', '32', '34'] },
+  { id: 'prod_2', name: 'RFD SHIRT DENIM', category: 'casual shirt', sku: 'MF-02', price: 1200, stock: 24, sizes: ['38', '40', '42'] },
+  { id: 'prod_3', name: 'Formal Shirt', category: 'Formal Shirts', sku: 'MF-03', price: 1150, stock: 45, sizes: ['38', '40', '42', '44'] },
+  { id: 'prod_4', name: ' Trousers', category: 'Trousers', sku: 'MF-TRS-04', price: 1200, stock: 32, sizes: ['30', '32', '34', '36'] },
+  { id: 'prod_5', name: 'Jacket', category: 'jacket', sku: 'MF-05', price: 3500, stock: 12, sizes: ['M', 'L', 'XL'] },
+  { id: 'prod_6', name: 'Formal pant', category: 'Formal pant', sku: 'MF-06', price: 1200, stock: 38, sizes: ['28', '30', '32', '34'] },
+  { id: 'prod_7', name: ' Perfume', category: 'Accessories', sku: 'MF-PFM-07', price: 1500, stock: 50, sizes: ['N/A'] },
+  { id: 'prod_8', name: 'Under garments', category: 'undergarments', sku: 'MF-UW-08', price: 500, stock: 40, sizes: ['Standard'] }
       ],
       customers: [],
       sales: [],
