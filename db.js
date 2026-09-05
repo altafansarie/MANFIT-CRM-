@@ -8,14 +8,14 @@ const DB_NAME = 'ManfitCRM_DB';
 const DB_VERSION = 1;
 
 const DEFAULT_SAMPLE_PRODUCTS = [
-  { id: 'prod_1', name: 'Italian Slim Fit Charcoal Suit', category: 'Suits', sku: 'MF-SUIT-01', price: 14500, stock: 18, sizes: ['38', '40', '42', '44'] },
-  { id: 'prod_2', name: 'Royal Navy Blazer (Brass Buttons)', category: 'Blazers', sku: 'MF-BLZ-02', price: 8900, stock: 24, sizes: ['38', '40', '42'] },
-  { id: 'prod_3', name: 'Egyptian Giza Cotton Formal Shirt', category: 'Formal Shirts', sku: 'MF-SHT-03', price: 2800, stock: 45, sizes: ['39', '40', '42', '44'] },
-  { id: 'prod_4', name: 'Classic Khaki Chino Trousers', category: 'Trousers', sku: 'MF-TRS-04', price: 2400, stock: 32, sizes: ['30', '32', '34', '36'] },
-  { id: 'prod_5', name: 'Raw Silk Festive Kurta & Jacket', category: 'Ethnic Wear', sku: 'MF-ETH-05', price: 9500, stock: 12, sizes: ['M', 'L', 'XL'] },
-  { id: 'prod_6', name: 'Premium Oxford Casual Button-down', category: 'Casual Shirts', sku: 'MF-CSH-06', price: 2200, stock: 38, sizes: ['S', 'M', 'L', 'XL'] },
-  { id: 'prod_7', name: 'Handcrafted Italian Leather Belt', category: 'Accessories', sku: 'MF-ACC-07', price: 1800, stock: 50, sizes: ['Free Size'] },
-  { id: 'prod_8', name: 'Pure Silk Jacquard Necktie & Cufflinks', category: 'Accessories', sku: 'MF-ACC-08', price: 1500, stock: 40, sizes: ['Standard'] }
+  { id: 'prod_1', name: 'GRAX JEANS', category: 'jeans', sku: 'MF-01', price: 1200, stock: 18, sizes: ['28', '30', '32', '34'] },
+  { id: 'prod_2', name: 'RFD SHIRT DENIM', category: 'casual shirt', sku: 'MF-02', price: 1200, stock: 24, sizes: ['38', '40', '42'] },
+  { id: 'prod_3', name: 'Formal Shirt', category: 'Formal Shirts', sku: 'MF-03', price: 1150, stock: 45, sizes: ['38', '40', '42', '44'] },
+  { id: 'prod_4', name: ' Trousers', category: 'Trousers', sku: 'MF-TRS-04', price: 1200, stock: 32, sizes: ['30', '32', '34', '36'] },
+  { id: 'prod_5', name: 'Jacket', category: 'jacket', sku: 'MF-05', price: 3500, stock: 12, sizes: ['M', 'L', 'XL'] },
+  { id: 'prod_6', name: 'Formal pant', category: 'Formal pant', sku: 'MF-06', price: 1200, stock: 38, sizes: ['28', '30', '32', '34'] },
+  { id: 'prod_7', name: ' Perfume', category: 'Accessories', sku: 'MF-PFM-07', price: 1500, stock: 50, sizes: ['N/A'] },
+  { id: 'prod_8', name: 'Under garments', category: 'undergarments', sku: 'MF-UW-08', price: 500, stock: 40, sizes: ['Standard'] }
 ];
 
 class IndexedDBStorage {
