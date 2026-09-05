@@ -129,7 +129,7 @@ header, main, footer, #receiptModal, #addProductModal {
    GLASSMORPHISM CARDS & HOVER EFFECTS
    ========================================================================== */
 .glass-card {
-  background: rgb(11, 11, 11);
+  background: rgba(97, 114, 8, 0.358);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(22, 22, 22, 0.11);
@@ -138,7 +138,7 @@ header, main, footer, #receiptModal, #addProductModal {
 }
 
 .glass-card:hover {
-  background-color: #4f5719c6;
+  background-color: #11110ee1;
   border-color: rgba(236, 227, 227, 0.786);
   box-shadow: 0 16px 45px -10px rgba(255, 255, 255, 0.08), 0 0 20px rgba(255, 255, 255, 0.03);
   transform: translateY(-2px);
